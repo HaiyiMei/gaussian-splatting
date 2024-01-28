@@ -85,9 +85,6 @@ def render(
     else:
         colors_precomp = override_color
 
-    import ipdb
-
-    ipdb.set_trace()
     # Rasterize visible Gaussians to image, obtain their radii (on screen).
     rendered_image, radii = rasterizer(
         means3D=means3D,
