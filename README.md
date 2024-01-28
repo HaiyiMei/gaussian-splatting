@@ -4,11 +4,11 @@ Bernhard Kerbl*, Georgios Kopanas*, Thomas Leimkühler, George Drettakis (* indi
 | [T&T+DB COLMAP (650MB)](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/datasets/input/tandt_db.zip) | [Pre-trained Models (14 GB)](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/datasets/pretrained/models.zip) | [Viewers for Windows (60MB)](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/binaries/viewers.zip) | [Evaluation Images (7 GB)](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/evaluation/images.zip) |<br>
 ![Teaser image](assets/teaser.png)
 
-This repository contains the official authors implementation associated with the paper "3D Gaussian Splatting for Real-Time Radiance Field Rendering", which can be found [here](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/). We further provide the reference images used to create the error metrics reported in the paper, as well as recently created, pre-trained models. 
+This repository contains the official authors implementation associated with the paper "3D Gaussian Splatting for Real-Time Radiance Field Rendering", which can be found [here](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/). We further provide the reference images used to create the error metrics reported in the paper, as well as recently created, pre-trained models.
 
 <a href="https://www.inria.fr/"><img height="100" src="assets/logo_inria.png"> </a>
 <a href="https://univ-cotedazur.eu/"><img height="100" src="assets/logo_uca.png"> </a>
-<a href="https://www.mpi-inf.mpg.de"><img height="100" src="assets/logo_mpi.png"> </a> 
+<a href="https://www.mpi-inf.mpg.de"><img height="100" src="assets/logo_mpi.png"> </a>
 <a href="https://team.inria.fr/graphdeco/"> <img style="width:100%;" src="assets/logo_graphdeco.png"></a>
 
 Abstract: *Radiance Field methods have recently revolutionized novel-view synthesis of scenes captured with multiple photos or videos. However, achieving high visual quality still requires neural networks that are costly to train and render, while recent faster methods inevitably trade off speed for quality. For unbounded and complete scenes (rather than isolated objects) and 1080p resolution rendering, no current method can achieve real-time display rates. We introduce three key elements that allow us to achieve state-of-the-art visual quality while maintaining competitive training times and importantly allow high-quality real-time (≥ 30 fps) novel-view synthesis at 1080p resolution. First, starting from sparse points produced during camera calibration, we represent the scene with 3D Gaussians that preserve desirable properties of continuous volumetric radiance fields for scene optimization while avoiding unnecessary computation in empty space; Second, we perform interleaved optimization/density control of the 3D Gaussians, notably optimizing anisotropic covariance to achieve an accurate representation of the scene; Third, we develop a fast visibility-aware rendering algorithm that supports anisotropic splatting and both accelerates training and allows realtime rendering. We demonstrate state-of-the-art visual quality and real-time rendering on several established datasets.*
@@ -44,7 +44,7 @@ User [camenduru](https://github.com/camenduru) was kind enough to provide a Cola
 
 ## Cloning the Repository
 
-The repository contains submodules, thus please check it out with 
+The repository contains submodules, thus please check it out with
 ```shell
 # SSH
 git clone git@github.com:graphdeco-inria/gaussian-splatting.git --recursive
@@ -67,7 +67,7 @@ The components have different requirements w.r.t. both hardware and software. Th
 
 ## Optimizer
 
-The optimizer uses PyTorch and CUDA extensions in a Python environment to produce trained models. 
+The optimizer uses PyTorch and CUDA extensions in a Python environment to produce trained models.
 
 ### Hardware Requirements
 
@@ -122,7 +122,7 @@ python train.py -s <path to COLMAP or NeRF Synthetic dataset>
 
   #### --source_path / -s
   Path to the source directory containing a COLMAP or Synthetic NeRF data set.
-  #### --model_path / -m 
+  #### --model_path / -m
   Path where the trained model should be stored (```output/<random>``` by default).
   #### --images / -i
   Alternative subdirectory for COLMAP images (```images``` by default).
@@ -141,14 +141,14 @@ python train.py -s <path to COLMAP or NeRF Synthetic dataset>
   #### --convert_cov3D_python
   Flag to make pipeline compute forward and backward of the 3D covariance with PyTorch instead of ours.
   #### --debug
-  Enables debug mode if you experience erros. If the rasterizer fails, a ```dump``` file is created that you may forward to us in an issue so we can take a look.
+  Enables debug mode if you experience errors. If the rasterizer fails, a ```dump``` file is created that you may forward to us in an issue so we can take a look.
   #### --debug_from
   Debugging is **slow**. You may specify an iteration (starting from 0) after which the above debugging becomes active.
   #### --iterations
   Number of total iterations to train for, ```30_000``` by default.
   #### --ip
   IP to start GUI server on, ```127.0.0.1``` by default.
-  #### --port 
+  #### --port
   Port to use for GUI server, ```6009``` by default.
   #### --test_iterations
   Space-separated iterations at which the training script computes L1 and PSNR over test set, ```7000 30000``` by default.
@@ -158,8 +158,8 @@ python train.py -s <path to COLMAP or NeRF Synthetic dataset>
   Space-separated iterations at which to store a checkpoint for continuing later, saved in the model directory.
   #### --start_checkpoint
   Path to a saved checkpoint to continue training from.
-  #### --quiet 
-  Flag to omit any text written to standard out pipe. 
+  #### --quiet
+  Flag to omit any text written to standard out pipe.
   #### --feature_lr
   Spherical harmonics features learning rate, ```0.0025``` by default.
   #### --opacity_lr
@@ -175,9 +175,9 @@ python train.py -s <path to COLMAP or NeRF Synthetic dataset>
   #### --position_lr_final
   Final 3D position learning rate, ```0.0000016``` by default.
   #### --position_lr_delay_mult
-  Position learning rate multiplier (cf. Plenoxels), ```0.01``` by default. 
+  Position learning rate multiplier (cf. Plenoxels), ```0.01``` by default.
   #### --densify_from_iter
-  Iteration where densification starts, ```500``` by default. 
+  Iteration where densification starts, ```500``` by default.
   #### --densify_until_iter
   Iteration where densification stops, ```15_000``` by default.
   #### --densify_grad_threshold
@@ -185,9 +185,9 @@ python train.py -s <path to COLMAP or NeRF Synthetic dataset>
   #### --densification_interval
   How frequently to densify, ```100``` (every 100 iterations) by default.
   #### --opacity_reset_interval
-  How frequently to reset opacity, ```3_000``` by default. 
+  How frequently to reset opacity, ```3_000``` by default.
   #### --lambda_dssim
-  Influence of SSIM on total loss from 0 to 1, ```0.2``` by default. 
+  Influence of SSIM on total loss from 0 to 1, ```0.2``` by default.
   #### --percent_dense
   Percentage of scene extent (0--1) a point must exceed to be forcibly densified, ```0.01``` by default.
 
@@ -215,16 +215,16 @@ python metrics.py -m <path to pre-trained model>
 <details>
 <summary><span style="font-weight: bold;">Command Line Arguments for render.py</span></summary>
 
-  #### --model_path / -m 
+  #### --model_path / -m
   Path to the trained model directory you want to create renderings for.
   #### --skip_train
   Flag to skip rendering the training set.
   #### --skip_test
   Flag to skip rendering the test set.
-  #### --quiet 
-  Flag to omit any text written to standard out pipe. 
+  #### --quiet
+  Flag to omit any text written to standard out pipe.
 
-  **The below parameters will be read automatically from the model path, based on what was used for training. However, you may override them by providing them explicitly on the command line.** 
+  **The below parameters will be read automatically from the model path, based on what was used for training. However, you may override them by providing them explicitly on the command line.**
 
   #### --source_path / -s
   Path to the source directory containing a COLMAP or Synthetic NeRF data set.
@@ -246,7 +246,7 @@ python metrics.py -m <path to pre-trained model>
 <details>
 <summary><span style="font-weight: bold;">Command Line Arguments for metrics.py</span></summary>
 
-  #### --model_paths / -m 
+  #### --model_paths / -m
   Space-separated list of model paths for which metrics should be computed.
 </details>
 <br>
@@ -255,19 +255,19 @@ We further provide the ```full_eval.py``` script. This script specifies the rout
 ```shell
 python full_eval.py -m360 <mipnerf360 folder> -tat <tanks and temples folder> -db <deep blending folder>
 ```
-In the current version, this process takes about 7h on our reference machine containing an A6000. If you want to do the full evaluation on our pre-trained models, you can specify their download location and skip training. 
+In the current version, this process takes about 7h on our reference machine containing an A6000. If you want to do the full evaluation on our pre-trained models, you can specify their download location and skip training.
 ```shell
 python full_eval.py -o <directory with pretrained models> --skip_training -m360 <mipnerf360 folder> -tat <tanks and temples folder> -db <deep blending folder>
 ```
 
-If you want to compute the metrics on our paper's [evaluation images](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/evaluation/images.zip), you can also skip rendering. In this case it is not necessary to provide the source datasets. You can compute metrics for multiple image sets at a time. 
+If you want to compute the metrics on our paper's [evaluation images](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/evaluation/images.zip), you can also skip rendering. In this case it is not necessary to provide the source datasets. You can compute metrics for multiple image sets at a time.
 ```shell
 python full_eval.py -m <directory with evaluation images>/garden ... --skip_training --skip_rendering
 ```
 
 <details>
 <summary><span style="font-weight: bold;">Command Line Arguments for full_eval.py</span></summary>
-  
+
   #### --skip_training
   Flag to skip training stage.
   #### --skip_rendering
@@ -323,7 +323,7 @@ sudo apt install -y libglew-dev libassimp-dev libboost-all-dev libgtk-3-dev libo
 cd SIBR_viewers
 cmake -Bbuild . -DCMAKE_BUILD_TYPE=Release # add -G Ninja to build faster
 cmake --build build -j24 --target install
-``` 
+```
 
 #### Ubuntu 20.04
 Backwards compatibility with Focal Fossa is not fully tested, but building SIBR with CMake should still work after invoking
@@ -332,7 +332,7 @@ git checkout fossa_compatibility
 ```
 
 ### Navigation in SIBR Viewers
-The SIBR interface provides several methods of navigating the scene. By default, you will be started with an FPS navigator, which you can control with ```W, A, S, D, Q, E``` for camera translation and ```I, K, J, L, U, O``` for rotation. Alternatively, you may want to use a Trackball-style navigator (select from the floating menu). You can also snap to a camera from the data set with the ```Snap to``` button or find the closest camera with ```Snap to closest```. The floating menues also allow you to change the navigation speed. You can use the ```Scaling Modifier``` to control the size of the displayed Gaussians, or show the initial point cloud.
+The SIBR interface provides several methods of navigating the scene. By default, you will be started with an FPS navigator, which you can control with ```W, A, S, D, Q, E``` for camera translation and ```I, K, J, L, U, O``` for rotation. Alternatively, you may want to use a Trackball-style navigator (select from the floating menu). You can also snap to a camera from the data set with the ```Snap to``` button or find the closest camera with ```Snap to closest```. The floating menus also allow you to change the navigation speed. You can use the ```Scaling Modifier``` to control the size of the displayed Gaussians, or show the initial point cloud.
 
 ### Running the Network Viewer
 
@@ -342,11 +342,11 @@ https://github.com/graphdeco-inria/gaussian-splatting/assets/40643808/90a2e4d3-c
 
 
 
-After extracting or installing the viewers, you may run the compiled ```SIBR_remoteGaussian_app[_config]``` app in ```<SIBR install dir>/bin```, e.g.: 
+After extracting or installing the viewers, you may run the compiled ```SIBR_remoteGaussian_app[_config]``` app in ```<SIBR install dir>/bin```, e.g.:
 ```shell
 ./<SIBR install dir>/bin/SIBR_remoteGaussian_app
 ```
-The network viewer allows you to connect to a running training process on the same or a different machine. If you are training on the same machine and OS, no command line parameters should be required: the optimizer communicates the location of the training data to the network viewer. By default, optimizer and network viewer will try to establish a connection on **localhost** on port **6009**. You can change this behavior by providing matching ```--ip``` and ```--port``` parameters to both the optimizer and the network viewer. If for some reason the path used by the optimizer to find the training data is not reachable by the network viewer (e.g., due to them running on different (virtual) machines), you may specify an override location to the viewer by using ```-s <source path>```. 
+The network viewer allows you to connect to a running training process on the same or a different machine. If you are training on the same machine and OS, no command line parameters should be required: the optimizer communicates the location of the training data to the network viewer. By default, optimizer and network viewer will try to establish a connection on **localhost** on port **6009**. You can change this behavior by providing matching ```--ip``` and ```--port``` parameters to both the optimizer and the network viewer. If for some reason the path used by the optimizer to find the training data is not reachable by the network viewer (e.g., due to them running on different (virtual) machines), you may specify an override location to the viewer by using ```-s <source path>```.
 
 <details>
 <summary><span style="font-weight: bold;">Primary Command Line Arguments for Network Viewer</span></summary>
@@ -356,8 +356,8 @@ The network viewer allows you to connect to a running training process on the sa
   #### --ip
   IP to use for connection to a running training script.
   #### --port
-  Port to use for connection to a running training script. 
-  #### --rendering-size 
+  Port to use for connection to a running training script.
+  #### --rendering-size
   Takes two space separated numbers to define the resolution at which network rendering occurs, ```1200``` width by default.
   Note that to enforce an aspect that differs from the input images, you need ```--force-aspect-ratio``` too.
   #### --load_images
@@ -375,12 +375,12 @@ https://github.com/graphdeco-inria/gaussian-splatting/assets/40643808/0940547f-1
 
 
 
-After extracting or installing the viewers, you may run the compiled ```SIBR_gaussianViewer_app[_config]``` app in ```<SIBR install dir>/bin```, e.g.: 
+After extracting or installing the viewers, you may run the compiled ```SIBR_gaussianViewer_app[_config]``` app in ```<SIBR install dir>/bin```, e.g.:
 ```shell
 ./<SIBR install dir>/bin/SIBR_gaussianViewer_app -m <path to trained model>
 ```
 
-It should suffice to provide the ```-m``` parameter pointing to a trained model directory. Alternatively, you can specify an override location for training input data using ```-s```. To use a specific resolution other than the auto-chosen one, specify ```--rendering-size <width> <height>```. Combine it with ```--force-aspect-ratio``` if you want the exact resolution and don't mind image distortion. 
+It should suffice to provide the ```-m``` parameter pointing to a trained model directory. Alternatively, you can specify an override location for training input data using ```-s```. To use a specific resolution other than the auto-chosen one, specify ```--rendering-size <width> <height>```. Combine it with ```--force-aspect-ratio``` if you want the exact resolution and don't mind image distortion.
 
 **To unlock the full frame rate, please disable V-Sync on your machine and also in the application (Menu &rarr; Display). In a multi-GPU system (e.g., laptop) your OpenGL/Display GPU should be the same as your CUDA GPU (e.g., by setting the application's GPU preference on Windows, see below) for maximum performance.**
 
@@ -398,7 +398,7 @@ SIBR has many other functionalities, please see the [documentation](https://sibr
   Specifies which of state to load if multiple are available. Defaults to latest available iteration.
   #### --path / -s
   Argument to override model's path to source dataset.
-  #### --rendering-size 
+  #### --rendering-size
   Takes two space separated numbers to define the resolution at which real-time rendering occurs, ```1200``` width by default. Note that to enforce an aspect that differs from the input images, you need ```--force-aspect-ratio``` too.
   #### --load_images
   Flag to load source dataset images to be displayed in the top view for each camera.
@@ -434,7 +434,7 @@ For rasterization, the camera models must be either a SIMPLE_PINHOLE or PINHOLE 
     |---<image 1>
     |---...
 ```
- If you have COLMAP and ImageMagick on your system path, you can simply run 
+ If you have COLMAP and ImageMagick on your system path, you can simply run
 ```shell
 python convert.py -s <location> [--resize] #If not resizing, ImageMagick is not needed
 ```
@@ -453,7 +453,7 @@ If you have your own COLMAP dataset without undistortion (e.g., using ```OPENCV`
         |---0
             |---...
 ```
-Then run 
+Then run
 ```shell
 python convert.py -s <location> --skip_matching [--resize] #If not resizing, ImageMagick is not needed
 ```
@@ -467,7 +467,7 @@ python convert.py -s <location> --skip_matching [--resize] #If not resizing, Ima
   Flag to indicate that COLMAP info is available for images.
   #### --source_path / -s
   Location of the inputs.
-  #### --camera 
+  #### --camera
   Which camera model to use for the early matching steps, ```OPENCV``` by default.
   #### --resize
   Flag for creating resized versions of input images.
