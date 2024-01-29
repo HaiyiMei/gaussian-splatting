@@ -13,11 +13,11 @@ import json
 import os
 import random
 
-from arguments import ModelParams
-from scene.dataset_readers import sceneLoadTypeCallbacks
-from scene.gaussian_model import GaussianModel
-from utils.camera_utils import camera_to_JSON, cameraList_from_camInfos
-from utils.system_utils import searchForMaxIteration
+from ..arguments import ModelParams
+from ..utils.camera_utils import camera_to_JSON, cameraList_from_camInfos
+from ..utils.system_utils import searchForMaxIteration
+from .dataset_readers import sceneLoadTypeCallbacks
+from .gaussian_model import GaussianModel
 
 
 class Scene:

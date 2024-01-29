@@ -17,9 +17,9 @@ import torch
 
 
 class BasicPointCloud(NamedTuple):
-    points: np.array
-    colors: np.array
-    normals: np.array
+    points: np.ndarray
+    colors: np.ndarray
+    normals: np.ndarray
 
 
 def geom_transform_points(points, transf_matrix):

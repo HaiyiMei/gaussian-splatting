@@ -18,12 +18,12 @@ from random import randint
 import torch
 from tqdm import tqdm
 
-from arguments import ModelParams, OptimizationParams, PipelineParams
-from gaussian_renderer import network_gui, render
-from scene import GaussianModel, Scene
-from utils.general_utils import safe_state
-from utils.image_utils import psnr
-from utils.loss_utils import l1_loss, ssim
+from .arguments import ModelParams, OptimizationParams, PipelineParams
+from .gaussian_renderer import network_gui, render
+from .scene import GaussianModel, Scene
+from .utils.general_utils import safe_state
+from .utils.image_utils import psnr
+from .utils.loss_utils import l1_loss, ssim
 
 try:
     from torch.utils.tensorboard import SummaryWriter

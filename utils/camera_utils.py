@@ -9,11 +9,13 @@
 # For inquiries contact  george.drettakis@inria.fr
 #
 
+from typing import List
+
 import numpy as np
 
-from scene.cameras import Camera
-from utils.general_utils import PILtoTorch
-from utils.graphics_utils import fov2focal
+from ..scene.cameras import Camera
+from .general_utils import PILtoTorch
+from .graphics_utils import fov2focal
 
 WARNED = False
 
@@ -66,7 +68,7 @@ def loadCam(args, id, cam_info, resolution_scale):
     )
 
 
-def cameraList_from_camInfos(cam_infos, resolution_scale, args):
+def cameraList_from_camInfos(cam_infos, resolution_scale, args) -> List[Camera]:
     camera_list = []
 
     for id, c in enumerate(cam_infos):

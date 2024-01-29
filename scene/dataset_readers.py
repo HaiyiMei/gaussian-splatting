@@ -19,7 +19,9 @@ import numpy as np
 from PIL import Image
 from plyfile import PlyData, PlyElement
 
-from scene.colmap_loader import (
+from ..utils.graphics_utils import focal2fov, fov2focal, getWorld2View2
+from ..utils.sh_utils import SH2RGB
+from .colmap_loader import (
     qvec2rotmat,
     read_extrinsics_binary,
     read_extrinsics_text,
@@ -28,9 +30,7 @@ from scene.colmap_loader import (
     read_points3D_binary,
     read_points3D_text,
 )
-from scene.gaussian_model import BasicPointCloud
-from utils.graphics_utils import focal2fov, fov2focal, getWorld2View2
-from utils.sh_utils import SH2RGB
+from .gaussian_model import BasicPointCloud
 
 
 class CameraInfo(NamedTuple):
@@ -177,7 +177,7 @@ def readColmapSceneInfo(path, images, eval, llffhold=8):
         cam_extrinsics = read_extrinsics_text(cameras_extrinsic_file)
         cam_intrinsics = read_intrinsics_text(cameras_intrinsic_file)
 
-    reading_dir = 'images' if images == None else images
+    reading_dir = 'images' if images is None else images
     cam_infos_unsorted = readColmapCameras(
         cam_extrinsics=cam_extrinsics, cam_intrinsics=cam_intrinsics, images_folder=os.path.join(path, reading_dir)
     )
