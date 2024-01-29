@@ -267,6 +267,9 @@ if __name__ == '__main__':
 
     print('Optimizing ' + args.model_path)
 
+    if args.source_path == '':
+        args.source_path = 'output/tandt/train'
+
     # Initialize system state (RNG)
     safe_state(args.quiet)
 
